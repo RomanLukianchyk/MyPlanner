@@ -13,3 +13,4 @@
 /.env
 /manage.py
 /.gitignore
+/.idea
