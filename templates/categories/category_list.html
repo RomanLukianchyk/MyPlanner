@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Categories</title>
+</head>
+<body>
+    <h2>Categories</h2>
+
+    <ul>
+        {% for category in categories %}
+            <li>
+                {{ category.custom_name }}
+            </li>
+        {% empty %}
+            <li>No categories available.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'category_create' %}">Create new category</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Delete Document</title>
+</head>
+<body>
+    <h2>Confirm Delete Document: {{ document.title }}</h2>
+    <p>Are you sure you want to delete this document?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm Delete</button>
+        <a href="{% url 'document_list' %}">Cancel</a>
+    </form>
+</body>
+</html>

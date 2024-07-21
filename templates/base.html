@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Django Project</title>
+</head>
+<body>
+  <header>
+    <h1>My Django Project</h1>
+    {% if user.is_authenticated %}
+      <p>Welcome, {{ user.username }}. <a href="{% url 'logout' %}">Logout</a></p>
+    {% else %}
+      <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Signup</a></p>
+    {% endif %}
+  </header>
+  <nav>
+    <ul>
+      <li><a href="{% url 'document_list' %}">Documents</a></li>
+    </ul>
+  </nav>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+  <footer>
+    <p>&copy; 2024 My Django Project</p>
+  </footer>
+</body>
+</html>

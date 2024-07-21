@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Note Detail</title>
+</head>
+<body>
+    <h2>Note Detail</h2>
+    <p><strong>Title:</strong> {{ note.title }}</p>
+    <p><strong>Content:</strong> {{ note.content }}</p>
+    <p><a href="{% url 'note_edit' note.pk %}">Edit</a></p>
+    <form method="POST" action="{% url 'note_delete' note.pk %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <p><a href="{% url 'note_list' %}">Back to Notes List</a></p>
+</body>
+</html>

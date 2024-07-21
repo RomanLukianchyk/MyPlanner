@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document List</title>
+</head>
+<body>
+    <h2>Document List</h2>
+    <a href="{% url 'document_upload' %}">Upload Document</a>
+    <ul>
+        {% for document in documents %}
+            <li><a href="{% url 'document_detail' document.pk %}">{{ document.title }}</a> | <a href="{% url 'document_delete' document.pk %}">Delete</a></li>
+        {% empty %}
+            <li>No documents yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

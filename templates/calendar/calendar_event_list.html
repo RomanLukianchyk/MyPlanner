@@ -1,0 +1,22 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar Events</title>
+</head>
+<body>
+    <h2>Your Calendar Events</h2>
+    <a href="{% url 'event_create' %}">Create Event</a>
+    <ul>
+        {% for event in events %}
+            <li>
+                <a href="{% url 'event_detail' event.pk %}">{{ event.event_title }}</a>
+                <a href="{% url 'event_edit' event.pk %}">Edit</a>
+                <form method="POST" action="{% url 'event_delete' event.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

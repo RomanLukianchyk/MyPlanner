@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Create/Edit Event</title>
+</head>
+<body>
+    <h2>{{ form.instance.pk|yesno:"Edit Event,Create Event" }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'calendar_view' %}">Cancel</a>
+</body>
+</html>
