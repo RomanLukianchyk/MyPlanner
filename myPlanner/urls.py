@@ -10,7 +10,8 @@ from notes import views as notes_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', core_views.home, name='home'),
+    path('', include('core.urls')),
+    # path('', core_views.home, name='home'),
     path('tasks/', include('tasks.urls')),
     path('categories/', include('categories.urls')),
     path('documents/', include('documents.urls')),
