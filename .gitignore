@@ -1,16 +1,6 @@
 /staticfiles/admin/
-/categories/
-/core/
-/documents/
-/kalendar/
 /media/
-/MyPlanner/
-/notes/
-/static/
-/tasks/
-/users/
 /venv/
 /.env
-/manage.py
 /.gitignore
 /.idea
