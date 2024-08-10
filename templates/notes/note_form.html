@@ -1,15 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-    <h2>{% block heading %}{% endblock %}</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{#{% block title %}My Planner - My Django Project{% endblock %}#}
+
+{% block header_title %}My Planner{% endblock %}
+
+{% block content %}
+<h2>Create a New Task</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="utf-8">#}
+{#    <title>{% block title %}{% endblock %}</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h2>{% block heading %}{% endblock %}</h2>#}
+{#    <form method="POST">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit">Save</button>#}
+{#    </form>#}
+{#</body>#}
+{#</html>#}

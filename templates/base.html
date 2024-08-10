@@ -1,31 +1,84 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>My Django Project</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Django Project{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'notes/css/rest.css' %}">
+    <link rel="stylesheet" href="{% static 'notes/css/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>My Django Project</h1>
-    {% if user.is_authenticated %}
-      <p>Welcome, {{ user.username }}. <a href="{% url 'logout' %}">Logout</a></p>
-    {% else %}
-      <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Signup</a></p>
-    {% endif %}
-  </header>
-  <nav>
-    <ul>
-      <li><a href="{% url 'document_list' %}">Documents</a></li>
-    </ul>
-  </nav>
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
-  <footer>
-    <p>&copy; 2024 My Django Project</p>
-  </footer>
+    <header class="header-wrapper">
+      <div class="burger-menu" id="burger-menu">☰</div>
+      {% if user.is_authenticated %}
+        <a href="#" class="welcome-link">Welcome, {{ user.username }}!</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="welcome-link">Login</a> | <a href="{% url 'signup' %}">Signup</a>
+      {% endif %}
+      <h1 class="main-title">{% block header_title %}MyPlanner{% endblock %}</h1>
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search notes, tasks, etc.">
+        <button class="search-button">Search</button>
+      </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+      <button class="close-btn" id="close-btn">&times;</button>
+      <a href="{% url 'task_list' %}" class="sidebar-link">Tasks</a>
+      <a href="{% url 'note_list' %}" class="sidebar-link">Notes</a>
+      <a href="{% url 'calendar_view' %}" class="sidebar-link">Calendar</a>
+      <a href="{% url 'document_list' %}" class="sidebar-link">Documents</a>
+      <a href="{% url 'category_list' %}" class="sidebar-link">Categories</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="sidebar-link">Logout</a>
+      {% endif %}
+    </div>
+
+    <main class="main-container">
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <footer class="footer-wrapper">
+      <p>&copy; 2024 My Django Project</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          const burgerMenu = document.getElementById("burger-menu");
+          const sidebar = document.getElementById("sidebar");
+          const closeBtn = document.getElementById("close-btn");
+
+          burgerMenu.addEventListener("click", function () {
+            sidebar.style.width = "250px";
+          });
+
+          closeBtn.addEventListener("click", function () {
+            sidebar.style.width = "0";
+          });
+
+          document.addEventListener("click", function (event) {
+            if (!sidebar.contains(event.target) && event.target !== burgerMenu) {
+              sidebar.style.width = "0";
+            }
+          });
+
+          $('#fast-note-content').on('input', function() {
+              $.ajax({
+                  url: "{% url 'save_fast_note' %}",  
+                  method: "POST",
+                  data: {
+                      'content': $(this).val(),
+                      'csrfmiddlewaretoken': '{{ csrf_token }}'
+                  },
+                  success: function(data) {
+                      console.log('Fast Note saved');
+                  }
+              });
+          });
+      });
+    </script>
 </body>
 </html>
-
-
-asd12

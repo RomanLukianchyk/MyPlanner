@@ -1,15 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Task</title>
-</head>
-<body>
-    <h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Task</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}{% if form.instance.pk %}Edit{% else %}Create{% endif %} Task - My Django Project{% endblock %}
+
+{% block content %}
+<h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Task</h2>
+
+<form method="post">
+  {% csrf_token %}
+  
+  <label for="{{ form.title.id_for_label }}">Title</label>
+  {{ form.title }}
+
+  <label for="{{ form.description.id_for_label }}">Description</label>
+  {{ form.description }}
+
+  <label>Status</label>
+  <div class="toggle-buttons">
+    {{ form.status }}
+  </div>
+
+  <label>Priority</label>
+  <div class="toggle-buttons">
+    {{ form.priority }}
+  </div>
+
+  <label for="{{ form.tags.id_for_label }}">Tags</label>
+  {{ form.tags }}
+
+  <label for="{{ form.completed.id_for_label }}">Completed</label>
+  {{ form.completed }}
+
+  <label for="{{ form.due_date.id_for_label }}">Due Date</label>
+  {{ form.due_date }}
+  <p>Count in days, leave empty if no due date</p>
+
+  <label for="{{ form.categories.id_for_label }}">Categories</label>
+  <div>
+    {{ form.categories }}
+  </div>
+
+  <button type="submit">Save</button>
+</form>
+{% endblock %}

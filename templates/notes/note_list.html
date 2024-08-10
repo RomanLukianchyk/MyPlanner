@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Note List</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}My Planner - My Django Project{% endblock %}
+
+{% block header_title %}My Planner{% endblock %}
+{% block content %}
     <h2>Your Notes</h2>
     <a href="{% url 'note_create' %}">Create Note</a>
     <ul>
@@ -14,5 +13,4 @@
             <li>No notes yet.</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}

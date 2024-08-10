@@ -49,17 +49,14 @@
           <textarea placeholder="Drag your file here..."></textarea>
         </section>
       </div>
-      <section class="calendar">
-        <h2 class="section-title">Calendar</h2>
-        <iframe
-          src="https://calendar.google.com/calendar/embed?height=500&wkst=1&ctz=UTC&bgcolor=%23ffffff&src=YmFydGVuMDAwMDhAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23F4511E&color=%2333B679"
-          style="border: solid 1px #777"
-          width="100%"
-          height="100%"
-          frameborder="0"
-          scrolling="no"
-        ></iframe>
-      </section>
+        <section class="calendar">
+            <h2 class="section-title">Calendar</h2>
+<div class="custom-calendar">
+    <table></table>
+</div>
+            <button class="prev-month-button">Previous</button>
+            <button class="next-month-button">Next</button>
+        </section>
     </main>
 
     <script>
@@ -97,6 +94,7 @@
           });
       });
     </script>
+    <script src="{% static 'notes/js/script.js' %}"></script>
 </body>
 </html>
 as

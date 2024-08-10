@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Create/Edit Event</title>
-</head>
+{% extends "base.html" %}
+
+{% block title %}My Planner - My Django Project{% endblock %}
+
+{% block header_title %}My Planner{% endblock %}
+
+{% block content %}
 <body>
     <h2>{{ form.instance.pk|yesno:"Edit Event,Create Event" }}</h2>
     <form method="POST">
@@ -13,4 +14,17 @@
     </form>
     <a href="{% url 'calendar_view' %}">Cancel</a>
 </body>
-</html>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,8 +1,9 @@
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Calendar Events</title>
-</head>
+{% extends "base.html" %}
+
+{% block title %}My Planner - My Django Project{% endblock %}
+
+{% block header_title %}My Planner{% endblock %}
+{% block content %}
 <body>
     <h2>Your Calendar Events</h2>
     <a href="{% url 'event_create' %}">Create Event</a>
@@ -18,5 +19,4 @@
             </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}

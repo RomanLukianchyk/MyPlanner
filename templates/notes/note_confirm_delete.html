@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Delete Note</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}My Planner - My Django Project{% endblock %}
+
+{% block header_title %}Note Delite{% endblock %}
+{% block content %}
     <h2>Delete Note</h2>
     <p>Are you sure you want to delete "{{ note.title }}"?</p>
     <form method="POST">
@@ -12,5 +11,4 @@
         <button type="submit">Confirm Delete</button>
     </form>
     <p><a href="{% url 'note_list' %}">Cancel</a></p>
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ event.event_title }}</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}My Planner - My Django Project{% endblock %}
+
+{% block header_title %}My Planner{% endblock %}
+{% block content %}
     <h2>{{ event.event_title }}</h2>
     <p>{{ event.event_description }}</p>
     <p>Date: {{ event.event_date }}</p>
@@ -17,5 +16,4 @@
         <button type="submit">Delete</button>
     </form>
     <a href="{% url 'calendar_view' %}">Back to Events</a>
-</body>
-</html>
+{% endblock %}
